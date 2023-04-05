@@ -1,0 +1,77 @@
+spring:
+
+  #  servlet:
+  #    multipart:
+  #      enabled: true
+  #      max-request-size: 10MB #?????????
+  #      max-file-size: 10MB #??????????
+
+
+  #  thymeleaf:
+  #    suffix: .html
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+
+
+  #  freemarker:
+  #    # ??? freemarker ????? .ftl ?????????????? .html
+  #    suffix: .ftlh
+  #    charset: UTF-8
+  #    content-type: text/html
+  #    allow-request-override: true
+  #    allow-session-override: true
+  #    expose-request-attributes: true
+  #    expose-session-attributes: true
+  #    expose-spring-macro-helpers: true
+  #    prefer-file-system-access: false
+  #    # ?????????
+  #    template-loader-path: classpath:/templates/us/
+
+
+
+  #spring:
+  #  mvc:
+  #    view:
+  #      prefix: /WEB-INF/jsp/
+  #      suffix: .jsp
+
+  datasource:
+    #    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC
+    #    username: root
+    #    password: 123456
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    test1:
+      jdbcUrl: jdbc:mysql://192.168.31.141:3306/test?useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+    #      driverClassName: com.mysql.cj.jdbc.Driver
+#    test2:
+#      jdbcUrl: jdbc:mysql://localhost:3306/testb?useSSL=false&serverTimezone=UTC
+#      username: root
+#      password: 12345678
+#      driverClassName: com.mysql.cj.jdbc.Driver
+
+#logging:
+#  level:
+#    com.duo.testa.daos: debug   #?? ??sql???????mapper??
+
+#name: dev  #????? ????? : ?? ?????????? @Value("${????}")???????
+
+#mybatis:
+#  mapper-locations: classpath:/shitilei/*.xml
+#  type-aliases-package: com.mycs.dao
+

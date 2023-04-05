@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<mapper namespace="abc" >-->
+<mapper namespace="comyz.dao.GsImpl">
+
+
+    <resultMap type="comyz.entities.Gs" id="ff"><!--无单双概念 得配置 写上sql 才有效果-->
+        <id column="sid" property="sid"/>
+        <result column="yuangong" property="yuangong"/>
+
+    </resultMap>
+
+    <!--第一种方法-->
+    <select id="gsquery" resultMap="ff">/*resultType="dansuan.entity.Classes"*/
+        select * from gongsi limit #{pageno},#{pagesize};
+    </select>
+
+    <select id="qugs" resultMap="ff">/*resultType="dansuan.entity.Classes"*/
+        select * from gongsi
+    </select>
+
+    <select id="quidgs" resultMap="ff">
+        select * from gongsi where sid=#{sid}
+    </select>
+
+    <select id="countsgs" resultType="int">
+        select count(*) from gongsi
+    </select>
+
+    <select id="coungs" resultType="int">
+        select count(*) from gongsi
+    </select>
+
+    <select id="pdd" resultType="int">
+        select distinct gs_id from us
+    </select>
+
+    <insert id="gsinsert" parameterType="comyz.entities.Gs">
+        insert into gongsi (yuangong) values(#{yuangong});
+    </insert>
+
+    <delete id="gsdelete" parameterType="int">
+        delete from gongsi where sid =#{sid}
+    </delete>
+
+    <update id="gsupdate" parameterType="comyz.entities.Gs">
+        update gongsi set yuangong=#{yuangong} where sid=#{sid};
+    </update>
+
+
+</mapper>

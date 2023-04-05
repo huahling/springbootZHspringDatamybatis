@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<mapper namespace="abc" >-->
+<mapper namespace="comyz.dao.UserImpl">
+
+
+    <resultMap type="comyz.entities.User" id="ff"><!--无单双概念 得配置 写上sql 才有效果-->
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="addr" property="addr"/>
+        <result column="birth" property="birth"/>
+        <result column="password" property="password"/>
+        <result column="hand" property="hand"/>
+        <result column="gs_id" property="gs_id"/>
+
+        <association property="gs" javaType="comyz.entities.Gs">
+            <id column="sid" property="sid"/>
+            <result column="yuangong" property="yuangong"/>
+        </association>
+    </resultMap>
+
+
+    <!--第一种方法-->
+    <select id="userquery" resultMap="ff">/*resultType="dansuan.entity.Classes"*/
+        <!-- select * from us limit #{pageno},#{pagesize}; -->
+        select u.id,u.name,u.sex,u.addr,u.birth,u.password,u.hand,u.gs_id,g.yuangong from us u,gongsi g where
+        u.gs_id=g.sid limit #{pageno},#{pagesize};
+    </select>
+
+    <select id="queryid" resultMap="ff">
+        select * from us where id=#{id}
+    </select>
+
+    <select id="queryUser" resultMap="ff">
+        select * from us u,gongsi g where u.gs_id=g.sid
+    </select>
+
+    <select id="counts" resultType="int">
+        select count(*) from us
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from us
+    </select>
+
+    <insert id="userinsert" parameterType="comyz.entities.User">
+        insert into us (name,sex,addr,birth,password,hand,gs_id)
+        values(#{name},#{sex},#{addr},#{birth},#{password},#{hand},#{gs.sid});
+    </insert>
+
+    <delete id="userdelete" parameterType="int">
+        delete from us where id =#{id}
+    </delete>
+
+    <update id="userupdate" parameterType="comyz.entities.User">
+        update us set
+        name=#{name},sex=#{sex},addr=#{addr},birth=#{birth},password=#{password},hand=#{hand},gs_id=#{gs_id} where
+        id=#{id};
+    </update>
+
+    <!--    <select id="userquery" parameterType="int">        /*resultType="dansuan.entity.Classes"*/-->
+    <!--        select * from us  where id=#{id}-->
+    <!--    </select>-->
+
+
+</mapper>
